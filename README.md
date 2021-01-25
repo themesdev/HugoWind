@@ -25,4 +25,4 @@ Easily edit your content with the [Netlify CMS](https://www.netlifycms.org/). Us
 * Purge CSS + HTML Minify configured
 * Ready to deploy @Netlify
 
-This website is build with HugoWind and shows all features.
+This website is build with [HugoWind](https://hugowind.netlify.app/) and shows all features.
