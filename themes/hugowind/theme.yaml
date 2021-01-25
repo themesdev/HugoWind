@@ -1,0 +1,10 @@
+name: hugowind
+license: MIT
+description: 'Hugo Tailwind CSS Starter theme'
+homepage: 'https://themes.dev/'
+tags: []
+features: []
+min_version: 0.79.1
+author:
+  name: 'Frank Spin, for themes.dev'
+  homepage: 'https://www.themes.dev/'

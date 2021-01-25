@@ -1,0 +1,13 @@
+baseURL: ''
+languageCode: en
+title: HugoWind
+theme: hugowind
+paginate: 100
+defaultContentLanguage: en
+markup:
+    goldmark:
+        renderer:
+          unsafe: true
+permalinks:
+  pages: /:slug/
+  

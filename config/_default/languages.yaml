@@ -1,0 +1,8 @@
+en:
+  languageName: International (English)
+  languageCode: en
+  weight: 1
+nl:
+  languageName: Dutch (Nederlands)
+  languageCode: nl
+  weight: 2

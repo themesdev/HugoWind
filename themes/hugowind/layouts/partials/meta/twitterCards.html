@@ -1,0 +1,18 @@
+
+{{ $params := .Params }}
+{{- with $.Param "seo.image" -}}
+{{ with $.Page.Resources.GetMatch . }}
+{{ with .  }}
+{{ $image := (.Fill "1260x630 Center") }}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image:src" content="{{ $image.RelPermalink | absURL }}" width="{{$image.Width}}" height="{{$image.Height}}" />
+{{ end }}
+{{- else -}}
+<meta name="twitter:card" content="summary" />
+{{- end -}}
+{{- end -}}
+<meta name="twitter:title" content="{{ with $params.seo.title }}{{ . }} {{ else }}{{ .Title }}{{ end }}" />
+<meta name="twitter:description" content="{{ with $params.seo.description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end -}}" />
+{{- with .Site.Params.twitterhandle -}}
+<meta name="twitter:site" content="@{{ . }}" />
+{{- end -}}

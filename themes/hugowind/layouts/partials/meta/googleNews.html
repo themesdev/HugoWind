@@ -1,0 +1,7 @@
+{{/* This is a modified version of _internal/google_news.html */}}
+{{ $params := .Params }}
+{{- if .IsPage -}}
+  {{- with $.Param "seo.tags" -}}
+  <meta name="news_keywords" content="{{ range $i, $kw := first 10 . }}{{ if $i }},{{ end }}{{ $kw }}{{ end }}" />
+  {{- end -}}
+{{- end -}}

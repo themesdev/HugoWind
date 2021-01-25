@@ -1,0 +1,10 @@
+minify:
+  disableJSON: true
+  disableSVG: true
+  DisableXML: true
+build:
+  writeStats: true
+outputs:
+  section:
+    - HTML
+    - JSON

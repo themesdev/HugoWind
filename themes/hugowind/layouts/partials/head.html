@@ -1,0 +1,66 @@
+<head>
+
+  {{ $title :=  (cond (ne ($.Param "seo.title") nil) ($.Param "seo.title") ( printf "%s | %s" .Title .Site.Title) ) }}
+  {{ $description :=  (cond (ne ($.Param "seo.description") nil) ($.Param "seo.description") .Description ) }}
+  <title>{{$title}}</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Accept-CH" content="DPR,Width,Viewport-Width" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="apple-mobile-web-app-title" content="{{ $title }}" />
+  <meta name="application-name" content="{{ $title }}" />
+  <meta name="msapplication-config" content="/favicons/browserconfig.xml" />
+  <meta name="theme-color" content="#ffffff" />
+  <meta name="description" content="{{ $description }} "/>
+  
+  {{- with .Keywords -}}
+  <meta name="keywords" content="{{ . }}" />
+  {{- end -}}
+  
+  {{- partial "meta/opengraph" . -}}
+  {{- partial "meta/googleNews" . -}}
+  {{- partial "meta/schema" . -}}
+  {{- partial "meta/twitterCards" . -}}
+  {{- partial "meta/favicon" . -}}
+  
+  {{ if .Params.seo.noindex}}
+  <meta name="robots" content="noindex">
+  {{ end }}
+  
+  {{- if .IsHome -}}
+  {{- range .Site.AllPages -}}
+  {{- $section := .Section -}}
+  {{- with .OutputFormats.Get "opensearch" -}}
+  <link rel="search" type="application/opensearchdescription+xml" title="{{ $title }}{{ with $section }} {{ . }}{{ end }} search" href="{{ .RelPermalink | safeURL }}" />
+  {{- end -}}
+  {{- end -}}
+  {{- end -}}
+  
+  {{ with .OutputFormats.Get "RSS" }}
+  <link href="{{ .RelPermalink }}" rel="alternate" type="application/rss+xml" title="{{ $title }}" />
+  <link href="{{ .RelPermalink }}" rel="feed" type="application/rss+xml" title="{{ $title }}" />
+  {{- end -}}
+  
+  {{ range .Translations }}
+  <link rel="alternate" hreflang="{{ .Lang }}" href="{{ .Permalink }}"/>
+  {{ end}}
+  
+  <link rel="alternate" hreflang="{{ .Site.Language.Lang }}" href="{{ .Permalink }}" />
+  <link rel="alternate" hreflang="x-default" href="{{ .Permalink }}"/>
+  <link rel="canonical" href="{{ .Permalink }}" />
+
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  
+  {{ $css := resources.Get "css/main.css" }}
+  {{ if .Site.IsServer }}
+  {{ $style := $css | resources.PostCSS }}
+  <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+  {{ else }}
+  {{ $style := $css | resources.PostCSS | minify  | fingerprint | resources.PostProcess }}
+  <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
+  {{ end }}
+  
+  </head>
