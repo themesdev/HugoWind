@@ -1,0 +1,16 @@
+{{ if .IsTranslated }}
+<div class="bg-gray-100 mt-6 lg:mt-12">
+  <div class="flex space-x-2 md:justify-end max-w-screen-xl mx-auto px-4 lg:px-8 py-8">
+    <span class="font-bold">
+      {{ T "translation_available" }}
+    </span>
+    <ul class="flex flex-col">
+      {{ range .Translations }}
+        <li>
+            <a href="{{ .Permalink }}"> {{ .Title }} ({{ .Lang }}) </a>
+        </li>
+        {{ end }}
+    </ul>
+  </div>
+</div>
+{{ end }}
