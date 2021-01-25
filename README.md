@@ -1,5 +1,7 @@
 # HugoWind
 
+_HugoWind is still work in progress, check [HugoWind homepage](https://www.themes.dev/hugowind/) for updates_
+
 Basic Starter Kit for [GoHugo](https://gohugo.io/) and [Tailwind CSS](https://www.tailwindcss.com), made by [themes.dev](https://www.themes.dev/).
 
 Comes with best practices out of the box, ready to be deployed at Netlify. Supports multi language mode, custom 404 pages and many more features.
